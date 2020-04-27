@@ -1,0 +1,41 @@
+{% set version = "1.0.0" %}
+
+package:
+  name: my-package
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  noarch: python
+  number: 0
+  script: {{ PYTHON }} -m pip install --no-deps --ignore-installed .
+  entry_points:
+    - my_entry_point = my_package.my_module:main_function
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - requests =2.22
+
+test:
+  imports:
+    - my_package.my_module
+
+about:
+  home: https://github.com/datapao/conda-hands-on
+  summary: 'Say Hello'
+  description: |
+        A very lightway package which 
+        says hello from the datapao team. 
+  dev_url: https://github.com/datapao/conda-hands-on
+  license: 'CC-BY-NC-SA-4.0'
+  license_file: 'LICENSE'
+
+extra:
+  recipe-maintainers:
+    - zoltanctoth
