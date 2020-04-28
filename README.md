@@ -29,15 +29,15 @@ pip install .
 
 #### conda
 ```
-conda smithy conda.recipe # lint
-
-# This block is optional and the build might work
-# without explicitly building a local channel
-
-mkdir ~/conda-bld         # Create folder which will act as a local channel
-conda index ~/conda-bld   # Set up local channel
+# Create a local channel (and use it later in conda-build)
+# This block is optional and the build might work 
+# without this if your defaults are set well.  
+conda smithy conda.recipe         # Lint recipe
+mkdir ~/conda-bld                 # Create folder which will act as a local channel
+conda index ~/conda-bld           # Set up local channel
+export CONDA_BLD_PATH=~/conda-bld # Specify build path
 
 # Build and Install Package
 
-CONDA_BLD_PATH=~/conda-bld conda-build conda.recipe
-conda install my-package
+conda-build conda.recipe          # Uses $CONDA_BLD_PATH implicitly
+conda install my-package -c $CONDA_BLD_PATH
