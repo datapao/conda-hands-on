@@ -14,7 +14,7 @@ conda activate conda-hands-on
 ```
 
 
-### Build: 
+### Build and Install Package
 
 #### setuptools
 
@@ -38,5 +38,6 @@ mkdir ~/conda-bld         # Create folder which will act as a local channel
 conda index ~/conda-bld   # Set up local channel
 
 # Build and Install Package
+
 CONDA_BLD_PATH=~/conda-bld conda-build conda.recipe
 conda install my-package
